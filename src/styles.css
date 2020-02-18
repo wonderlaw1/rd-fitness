@@ -1,1 +1,50 @@
 /* You can add global styles to this file, and also import other style files */
+.space-between {
+  justify-content: space-between;
+}
+
+.flex {
+  display: flex;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.field {
+  padding: 10px;
+}
+
+.actions {
+  padding: 5px 10px;
+}
+
+.field b {
+  margin-bottom: 3px;
+}
+
+.p-10 {
+  padding: 10px;
+}
+
+.item:hover {
+  background: #ccc;
+  cursor: pointer;
+}
+
+i.fa {
+  margin-right: 5px;
+}
+
+.logo {
+  justify-content: center;
+}
+
+.schedule-calendar {
+  width: 25%;
+  margin-bottom: 15px;
+}
+.ingredient-label {
+  display: flex;
+  margin-bottom: 10px;
+}

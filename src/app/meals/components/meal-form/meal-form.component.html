@@ -1,0 +1,25 @@
+<form>
+  <div class="field">
+    <label>
+      <b>Meal name:</b>
+      <input class="input" type="text" placeholder="e.g. Spaghetti">
+    </label>
+  </div>
+
+  <div class="flex space-between p-10">
+    <b>Ingredients:</b>
+    <button class="button is-primary is-small">+ Ingredient</button>
+  </div>
+
+  <div class="field">
+    <label class="ingredient-label">
+      <input class="input" type="text" placeholder="e.g. Egg">
+      <button class="button is-danger">X</button>
+    </label>
+  </div>
+
+  <div class="actions flex space-between">
+    <button [routerLink]="['../']" class="button">Cancel</button>
+    <button class="button is-primary">Add</button>
+  </div>
+</form>
