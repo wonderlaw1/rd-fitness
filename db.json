@@ -1,0 +1,45 @@
+{
+  "schedule": [],
+  "workouts": [
+    {
+      "id": 1,
+      "type": "endurance",
+      "name": "Running",
+      "strength": {
+        "reps": 0,
+        "sets": 0,
+        "weight": 0
+      },
+      "endurance": {
+        "distance": 10,
+        "duration": 60
+      }
+    },
+    {
+      "id": 2,
+      "type": "strength",
+      "name": "Benchpress",
+      "strength": {
+        "reps": 15,
+        "sets": 2,
+        "weight": 0
+      },
+      "endurance": {
+        "distance": 0,
+        "duration": 0
+      }
+    }
+  ],
+  "meals": [
+    {
+      "id": 1,
+      "name": "Spaghetti",
+      "ingredients": ["Pasta", "Meat"]
+    },
+    {
+      "id": 2,
+      "name": "English Breakfast",
+      "ingredients": ["Sausages", "Beans", "Toasts"]
+    }
+  ]
+}

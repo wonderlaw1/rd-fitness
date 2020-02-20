@@ -1,24 +1,10 @@
 <div class="panel">
   <div class="panel-heading space-between flex align-items-center">
     <span><i class="fa fa-dumbbell"></i> Your trainings:</span>
-    <button class="button is-primary is-small" [routerLink]="['./add']">Add Training</button>
+    <button [routerLink]="['./add']" class="button is-primary is-small">Add Training</button>
   </div>
-  <div class="panel-block space-between item">
-    <div>
-      <p>Push-ups</p>
-      <p class="is-size-7">Weight: 0kg, Reps: 10, Sets: 2</p>
-    </div>
-    <div>
-      <i class="fa fa-trash-alt"></i>
-    </div>
-  </div>
-  <div class="panel-block space-between item">
-    <div>
-      <p>Treadmill</p>
-      <p class="is-size-7">Distance: 2km, Duration: 12min</p>
-    </div>
-    <div>
-      <i class="fa fa-trash-alt"></i>
-    </div>
-  </div>
+  <app-list-item
+    [item]="workout"
+    (navigate)="onNavigate($event)"
+    *ngFor="let workout of workouts | async"></app-list-item>
 </div>

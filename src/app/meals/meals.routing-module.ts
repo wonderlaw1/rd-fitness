@@ -11,17 +11,17 @@ const routes: Route[] = [
   {
     path: 'add',
     component: MealComponent
+  },
+  {
+    path: ':id',
+    component: MealComponent
   }
 ];
 
 @NgModule({
-  declarations: [
-  ],
   imports: [
     RouterModule.forChild(routes)
   ],
-  providers: [],
-  bootstrap: [],
   exports: [RouterModule]
 })
 export class MealsRoutingModule { }
