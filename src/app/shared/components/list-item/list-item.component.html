@@ -1,4 +1,4 @@
-<div class="panel-block space-between item" (click)="onNavigate(item)">
+<div class="panel-block space-between item" (click)="onNavigate(item.id)">
   <div>
     <p>{{ item.name }}</p>
     <p class="is-size-7" *ngIf="item?.ingredients; else showWorkout">{{ item?.ingredients | join }}</p>
@@ -7,6 +7,6 @@
     </ng-template>
   </div>
   <div>
-    <i class="fa fa-trash-alt"></i>
+    <i (click)="onDelete($event, item.id);" class="fa fa-trash-alt"></i>
   </div>
 </div>

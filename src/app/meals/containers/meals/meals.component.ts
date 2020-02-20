@@ -25,6 +25,12 @@ export class MealsComponent implements OnInit {
   }
 
   async onNavigate(id: string) {
+    console.log('navigate: ', id);
     await this.router.navigate([`meals/${id}`]);
+  }
+
+  async onDelete(id: string) {
+    console.log('delete: ', id);
+    // await this.router.navigate([`meals/${id}`]);
   }
 }

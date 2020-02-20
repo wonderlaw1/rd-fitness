@@ -8,6 +8,7 @@ import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 export class ListItemComponent implements OnInit {
 
   @Output() navigate: EventEmitter<string> = new EventEmitter();
+  @Output() delete: EventEmitter<string> = new EventEmitter();
   @Input() item: any;
 
   constructor() { }
@@ -15,7 +16,12 @@ export class ListItemComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onNavigate(item: any) {
-    this.navigate.emit(item.id);
+  onNavigate(id: string) {
+    this.navigate.emit(id);
+  }
+
+  onDelete(event: Event, id: string) {
+    event.stopPropagation();
+    console.log(id);
   }
 }

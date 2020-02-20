@@ -3,5 +3,5 @@
     <span><i class="fa fa-utensils"></i> Your meals:</span>
     <button [routerLink]="['./add']" class="button is-primary is-small">Add Meal</button>
   </div>
-  <app-list-item (navigate)="onNavigate($event)" [item]="meal" *ngFor="let meal of meals | async"></app-list-item>
+  <app-list-item (navigate)="onNavigate($event)" (delete)="onDelete($event)" [item]="meal" *ngFor="let meal of meals | async"></app-list-item>
 </div>
