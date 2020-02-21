@@ -4,15 +4,14 @@
     <button [routerLink]="['./add']" class="button is-primary is-small">Add Training</button>
   </div>
 
-  <ng-container *ngIf="workouts$ | async as workouts; else loading">
+  <ng-container *ngIf="workouts && !isLoading; else loading">
     <app-list-item [item]="workout"
                    (navigate)="onNavigate($event)"
                    (delete)="onDelete($event)"
                    *ngFor="let workout of workouts">
     </app-list-item>
-
     <div *ngIf="!workouts.length">
-      No meals, add a new meal to start
+      No meals, add a new workout to start
     </div>
   </ng-container>
 

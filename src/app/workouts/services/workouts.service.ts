@@ -14,4 +14,8 @@ export class WorkoutsService {
   getWorkouts(): Observable<Workout[]> {
     return this.workoutsApiService.getWorkouts();
   }
+
+  deleteWorkout(id: string): Observable<{}> {
+    return this.workoutsApiService.deleteWorkout(id);
+  }
 }

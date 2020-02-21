@@ -4,13 +4,12 @@
     <button [routerLink]="['./add']" class="button is-primary is-small">Add Meal</button>
   </div>
 
-  <ng-container *ngIf="meals$ | async as meals; else loading">
+  <ng-container *ngIf="meals && !isLoading; else loading">
     <app-list-item [item]="meal"
                    (navigate)="onNavigate($event)"
                    (delete)="onDelete($event)"
                    *ngFor="let meal of meals">
     </app-list-item>
-
     <div *ngIf="!meals.length">
       No meals, add a new meal to start
     </div>

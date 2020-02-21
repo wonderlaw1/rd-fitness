@@ -1,8 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-import {WorkoutsService} from '../../services/workouts.service';
 import {Observable} from 'rxjs';
-import {Workout} from '../../../core/models/workout.model';
+import {switchMap, tap} from 'rxjs/operators';
 import {Router} from '@angular/router';
+
+
+import {Workout} from '../../../core/models/workout.model';
+
+import {WorkoutsService} from '../../services/workouts.service';
+
 
 @Component({
   selector: 'app-workouts',
@@ -12,21 +17,34 @@ import {Router} from '@angular/router';
 })
 export class WorkoutsComponent implements OnInit {
 
-  workouts$: Observable<Workout[]>;
+  isLoading: boolean;
+  workouts: Workout[];
 
   constructor(private workoutsService: WorkoutsService,
               private router: Router) {
   }
 
   ngOnInit(): void {
-    this.workouts$ = this.workoutsService.getWorkouts();
+    this.isLoading = true;
+    this.loadWorkouts().subscribe();
   }
 
   async onNavigate(id: string) {
     await this.router.navigate([`workouts/${id}`]);
   }
 
-  onDelete(id: string) {
-    console.log('delete: ', id);
+  onDelete(id: string): void {
+    this.isLoading = true;
+
+    this.workoutsService.deleteWorkout(id).pipe(
+      switchMap(() => this.loadWorkouts()),
+    ).subscribe();
+  }
+
+  private loadWorkouts = (): Observable<Workout[]> => {
+    return this.workoutsService.getWorkouts().pipe(
+      tap(workouts => this.workouts = workouts),
+      tap(() => this.isLoading = false)
+    );
   }
 }

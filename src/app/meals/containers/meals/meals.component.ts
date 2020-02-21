@@ -5,7 +5,7 @@ import {Observable} from 'rxjs';
 import {Meal} from '../../../core/models/meal.model';
 
 import {MealsService} from '../../services/meals.service';
-import {tap} from 'rxjs/operators';
+import {switchMap, tap} from 'rxjs/operators';
 
 
 @Component({
@@ -16,14 +16,16 @@ import {tap} from 'rxjs/operators';
 })
 export class MealsComponent implements OnInit {
 
-  meals$: Observable<Meal[]>;
+  isLoading: boolean;
+  meals: Meal[];
 
   constructor(private mealsService: MealsService,
               private router: Router) {
   }
 
   ngOnInit(): void {
-    this.loadMeals();
+    this.isLoading = true;
+    this.loadMeals().subscribe();
   }
 
   async onNavigate(id: string) {
@@ -31,12 +33,17 @@ export class MealsComponent implements OnInit {
   }
 
   onDelete(id: string): void {
+    this.isLoading = true;
+
     this.mealsService.deleteMeal(id).pipe(
-      tap(this.loadMeals)
+      switchMap(() => this.loadMeals()),
     ).subscribe();
   }
 
-  private loadMeals = (): void => {
-    this.meals$ = this.mealsService.getMeals();
+  private loadMeals = (): Observable<Meal[]> => {
+    return this.mealsService.getMeals().pipe(
+      tap(meals => this.meals = meals),
+      tap(() => this.isLoading = false)
+    );
   }
 }
