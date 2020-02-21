@@ -12,18 +12,21 @@ import {Router} from '@angular/router';
 })
 export class WorkoutsComponent implements OnInit {
 
-  workouts: Observable<Workout[]>;
+  workouts$: Observable<Workout[]>;
 
   constructor(private workoutsService: WorkoutsService,
               private router: Router) {
   }
 
   ngOnInit(): void {
-    this.workouts = this.workoutsService.getWorkouts();
+    this.workouts$ = this.workoutsService.getWorkouts();
   }
 
   async onNavigate(id: string) {
     await this.router.navigate([`workouts/${id}`]);
   }
 
+  onDelete(id: string) {
+    console.log('delete: ', id);
+  }
 }

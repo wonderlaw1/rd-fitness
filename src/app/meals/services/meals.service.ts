@@ -14,4 +14,8 @@ export class MealsService {
   getMeals(): Observable<Meal[]> {
     return this.mealsApiService.getMeals();
   }
+
+  deleteMeal(id: string): Observable<{}> {
+    return this.mealsApiService.deleteMeal(id);
+  }
 }

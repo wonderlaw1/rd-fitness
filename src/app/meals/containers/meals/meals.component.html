@@ -3,5 +3,20 @@
     <span><i class="fa fa-utensils"></i> Your meals:</span>
     <button [routerLink]="['./add']" class="button is-primary is-small">Add Meal</button>
   </div>
-  <app-list-item (navigate)="onNavigate($event)" (delete)="onDelete($event)" [item]="meal" *ngFor="let meal of meals | async"></app-list-item>
+
+  <ng-container *ngIf="meals$ | async as meals; else loading">
+    <app-list-item [item]="meal"
+                   (navigate)="onNavigate($event)"
+                   (delete)="onDelete($event)"
+                   *ngFor="let meal of meals">
+    </app-list-item>
+
+    <div *ngIf="!meals.length">
+      No meals, add a new meal to start
+    </div>
+  </ng-container>
+
+  <ng-template #loading>
+    Loading...
+  </ng-template>
 </div>

@@ -1,0 +1,8 @@
+.delete-item {
+  display: flex;
+  align-items: center;
+}
+
+.delete-item__action {
+  margin-left: 10px;
+}

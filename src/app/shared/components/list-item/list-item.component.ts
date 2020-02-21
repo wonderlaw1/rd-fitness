@@ -7,9 +7,11 @@ import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 })
 export class ListItemComponent implements OnInit {
 
+  @Input() item: any;
   @Output() navigate: EventEmitter<string> = new EventEmitter();
   @Output() delete: EventEmitter<string> = new EventEmitter();
-  @Input() item: any;
+
+  toggled: boolean;
 
   constructor() { }
 
@@ -22,6 +24,11 @@ export class ListItemComponent implements OnInit {
 
   onDelete(event: Event, id: string) {
     event.stopPropagation();
-    console.log(id);
+    this.delete.emit(id);
+  }
+
+  toggle(event: Event) {
+    event.stopPropagation();
+    this.toggled = !this.toggled;
   }
 }

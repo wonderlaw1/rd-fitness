@@ -3,8 +3,20 @@
     <span><i class="fa fa-dumbbell"></i> Your trainings:</span>
     <button [routerLink]="['./add']" class="button is-primary is-small">Add Training</button>
   </div>
-  <app-list-item
-    [item]="workout"
-    (navigate)="onNavigate($event)"
-    *ngFor="let workout of workouts | async"></app-list-item>
+
+  <ng-container *ngIf="workouts$ | async as workouts; else loading">
+    <app-list-item [item]="workout"
+                   (navigate)="onNavigate($event)"
+                   (delete)="onDelete($event)"
+                   *ngFor="let workout of workouts">
+    </app-list-item>
+
+    <div *ngIf="!workouts.length">
+      No meals, add a new meal to start
+    </div>
+  </ng-container>
+
+  <ng-template #loading>
+    Loading...
+  </ng-template>
 </div>

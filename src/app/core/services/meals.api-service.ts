@@ -15,4 +15,8 @@ export class MealsApiService {
   getMeals(): Observable<Meal[]> {
     return this.http.get<Meal[]>('http://localhost:3000/meals');
   }
+
+  deleteMeal(id: string): Observable<{}> {
+    return this.http.delete<Meal>(`http://localhost:3000/meals/${id}`);
+  }
 }

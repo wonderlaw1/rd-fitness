@@ -6,7 +6,23 @@
       <p class="is-size-7">{{ item | workout }}</p>
     </ng-template>
   </div>
-  <div>
-    <i (click)="onDelete($event, item.id);" class="fa fa-trash-alt"></i>
+
+  <div class="delete-item">
+    <div class="list-item__delete" *ngIf="toggled">
+      <p>Delete item?</p>
+      <button
+        class="button is-danger is-small"
+        type="button"
+        (click)="onDelete($event, item.id)">
+        Yes
+      </button>
+      <button
+        class="button is-small"
+        type="button"
+        (click)="toggle($event)">
+        No
+      </button>
+    </div>
+    <i (click)="toggle($event)" class="fa fa-trash-alt delete-item__action"></i>
   </div>
 </div>
