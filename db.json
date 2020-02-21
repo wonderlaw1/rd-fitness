@@ -1,0 +1,16 @@
+{
+  "meals": [
+    {
+      "id": 1,
+      "name": "Spaghetti"
+    },
+    {
+      "id": 2,
+      "name": "English Breakfast"
+    },
+    {
+      "id": 3,
+      "name": "Pizza"
+    }
+  ]
+}
