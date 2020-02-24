@@ -1,5 +1,4 @@
-import {Component,, Input, OnInit, Output} from '@angular/core';
-import {Meal} from '../../core/models/meal.model';
+import {Component, Input, OnInit, Output} from '@angular/core';
 import {EventEmitter} from '@angular/core';
 
 @Component({
