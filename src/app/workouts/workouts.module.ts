@@ -5,10 +5,16 @@ import {WorkoutsRoutingModule} from './workouts.routing-module';
 import {WorkoutComponent} from './containers/workout/workout.component';
 import {WorkoutFormComponent} from './components/workout-form/workout-form.component';
 import {SharedModule} from '../shared/shared.module';
+import {CreditCardLogoDirective} from './directives/credit-card-logo.directive';
 
 
 @NgModule({
-  declarations: [WorkoutsComponent, WorkoutComponent, WorkoutFormComponent],
+  declarations: [
+    WorkoutsComponent,
+    WorkoutComponent,
+    WorkoutFormComponent,
+    CreditCardLogoDirective
+  ],
   imports: [
     CommonModule,
     WorkoutsRoutingModule,

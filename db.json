@@ -33,15 +33,13 @@
   "meals": [
     {
       "id": 1,
-      "name": "Spaghetti"
+      "name": "Spaghetti",
+      "ingredients": ["Pasta", "Tomato", "Meat"]
     },
     {
       "id": 2,
-      "name": "English Breakfast"
-    },
-    {
-      "id": 3,
-      "name": "Pizza"
+      "name": "English Breakfast",
+      "ingredients": ["Beans", "Toasts", "Bacon"]
     }
   ]
 }

@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WorkoutFormComponent implements OnInit {
 
+  cardNumber = '';
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onCardChange(cardNumber: string) {
+    this.cardNumber = cardNumber;
   }
 
 }

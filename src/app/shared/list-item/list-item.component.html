@@ -1,6 +1,12 @@
 <div class="panel-block space-between item">
   <div>
     <p>{{ item.name }}</p>
+    <p class="is-size-7">
+      <span *ngIf="item.ingredients; else showWorkout">{{ item.ingredients | join }}</span>
+      <ng-template #showWorkout>
+        <span>{{ item | workout }}</span>
+      </ng-template>
+    </p>
   </div>
   <div>
     <i (click)="handleDelete()" class="fa fa-trash-alt"></i>
