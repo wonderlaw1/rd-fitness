@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MealsService} from '../../services/meals.service';
 import {switchMap, tap} from 'rxjs/operators';
 import {Meal} from '../../../core/models/meal.model';
+import {JoinPipe} from '../../../shared/pipes/join.pipe';
 
 
 @Component({
@@ -17,16 +18,14 @@ export class MealsComponent implements OnInit {
   constructor(private mealsService: MealsService) { }
 
   ngOnInit(): void {
-    this.mealsService.getMeals().pipe(
-      tap(data => this.meals = data)
+    this.mealsService.loadMeals().subscribe();
+    this.mealsService.meals.pipe(
+      tap(meals => this.meals = meals)
     ).subscribe();
   }
 
   handleDelete(id: number) {
-    this.mealsService.deleteMeal(id).pipe(
-      switchMap(() => this.mealsService.getMeals()),
-      tap(data => this.meals = data)
-    ).subscribe();
+    this.mealsService.deleteMealById(id).subscribe();
   }
 
 }

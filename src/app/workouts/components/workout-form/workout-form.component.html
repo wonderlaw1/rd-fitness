@@ -2,7 +2,8 @@
   <div class="field">
     <label>
       <b>Workout name:</b>
-      <input class="input" type="text" placeholder="e.g. Benchpress">
+      <input (keyup)="onKeyUp(card.value)" #card class="input" type="text" placeholder="e.g. Benchpress">
+      <img appCreditCardLogo [cardNumber]="cardNumber">
     </label>
   </div>
 
