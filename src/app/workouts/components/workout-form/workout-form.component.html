@@ -1,9 +1,11 @@
-<form>
+<form [formGroup]="form">
   <div class="field">
     <label>
       <b>Workout name:</b>
-      <input (keyup)="onKeyUp(card.value)" #card class="input" type="text" placeholder="e.g. Benchpress">
-      <img appCreditCardLogo [cardNumber]="cardNumber">
+      <input [placeholder]="placeholder" class="input" type="text" placeholder="e.g. Benchpress" formControlName="name">
+      <span class="error" *ngIf="required">
+        Workout name is required
+      </span>
     </label>
   </div>
 
@@ -11,52 +13,53 @@
     <b class="is-block">Type:</b>
     <label class="radio">
       Strength:
-      <input name="type" type="radio">
+      <input name="type" type="radio" formControlName="type" value="strength">
     </label>
     <label class="radio">
       Endurance:
-      <input name="type" type="radio">
+      <input name="type" type="radio" formControlName="type" value="endurance">
     </label>
   </div>
 
-  <div class="flex space-between">
+  <div class="flex space-between" *ngIf="form.get('type').value === 'strength'" formGroupName="strength">
     <div class="field">
       <label>
         <b>Reps:</b>
-        <input class="input" type="text">
+        <input class="input" type="text" formControlName="reps">
       </label>
     </div>
     <div class="field">
       <label>
         <b>Sets:</b>
-        <input class="input" type="text">
+        <input class="input" type="text" formControlName="sets">
       </label>
     </div>
     <div class="field">
       <label>
         <b>Weight:</b>
-        <input class="input" type="text">
+        <input class="input" type="text" formControlName="weight">
       </label>
     </div>
   </div>
 
-  <div class="flex space-between">
+  <div class="flex space-between" *ngIf="form.get('type').value === 'endurance'" formGroupName="endurance">
     <div class="field">
       <label>
         <b>Distance(km):</b>
-        <input class="input" type="text">
+        <input class="input" type="text" formControlName="distance">
       </label>
     </div>
     <div class="field">
       <label>
         <b>Duration(min):</b>
-        <input class="input" type="text">
+        <input class="input" type="text" formControlName="duration">
       </label>
     </div>
   </div>
 
   <div class="actions flex space-between">
     <button class="button" [routerLink]="['../']">Cancel</button>
-    <button class="button is-primary">Add</button>
+    <button class="button is-primary" *ngIf="exists" (click)="updateWorkout()">Edit</button>
+    <button class="button is-primary" *ngIf="!exists" (click)="createWorkout()">Add</button>
   </div>
 </form>

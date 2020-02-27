@@ -49,3 +49,7 @@ i.fa {
   display: flex;
   margin-bottom: 10px;
 }
+
+.ng-invalid.ng-touched {
+  border-color: red;
+}

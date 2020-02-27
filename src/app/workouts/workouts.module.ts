@@ -6,6 +6,7 @@ import {WorkoutComponent} from './containers/workout/workout.component';
 import {WorkoutFormComponent} from './components/workout-form/workout-form.component';
 import {SharedModule} from '../shared/shared.module';
 import { CreditCardLogoDirective } from './directives/credit-card-logo.directive';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import { CreditCardLogoDirective } from './directives/credit-card-logo.directive
   imports: [
     CommonModule,
     WorkoutsRoutingModule,
+    ReactiveFormsModule,
     SharedModule
   ]
 })

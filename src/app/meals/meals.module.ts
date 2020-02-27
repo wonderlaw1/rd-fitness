@@ -6,6 +6,7 @@ import {MealsRoutingModule} from './meals.routing-module';
 import { MealComponent } from './containers/meal/meal.component';
 import { MealFormComponent } from './components/meal-form/meal-form.component';
 import {SharedModule} from '../shared/shared.module';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import {SharedModule} from '../shared/shared.module';
   imports: [
     CommonModule,
     MealsRoutingModule,
+    ReactiveFormsModule,
     SharedModule
   ]
 })

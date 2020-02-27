@@ -1,25 +1,29 @@
-<form>
+<form [formGroup]="form">
   <div class="field">
     <label>
       <b>Meal name:</b>
-      <input class="input" type="text" placeholder="e.g. Spaghetti">
+      <input class="input" type="text" placeholder="e.g. Spaghetti" formControlName="name">
+      <span class="error" *ngIf="required">
+        Meal name is required
+      </span>
     </label>
   </div>
 
   <div class="flex space-between p-10">
     <b>Ingredients:</b>
-    <button class="button is-primary is-small">+ Ingredient</button>
+    <button class="button is-primary is-small" (click)="addIngredient()">+ Ingredient</button>
   </div>
 
-  <div class="field">
-    <label class="ingredient-label">
-      <input class="input" type="text" placeholder="e.g. Egg">
-      <button class="button is-danger">X</button>
+  <div class="field" formArrayName="ingredients">
+    <label class="ingredient-label" *ngFor="let c of ingredients.controls; index as i">
+      <input class="input" type="text" placeholder="e.g. Egg" [formControlName]="i">
+      <button class="button is-danger" (click)="removeIngredient(i)">X</button>
     </label>
   </div>
 
   <div class="actions flex space-between">
     <button [routerLink]="['../']" class="button">Cancel</button>
-    <button class="button is-primary">Add</button>
+    <button class="button is-primary" *ngIf="exists" (click)="updateMeal()">Edit</button>
+    <button class="button is-primary" *ngIf="!exists" (click)="createMeal()">Add</button>
   </div>
 </form>
