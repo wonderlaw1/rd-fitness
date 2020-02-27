@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core';
 import {Observable, Subject} from 'rxjs';
+import {switchMap, tap} from 'rxjs/operators';
 
 import {Meal} from '../../core/models/meal.model';
 import {MealsApiService} from '../../core/services/meals.api-service';
-import {switchMap, tap} from 'rxjs/operators';
 import {LoaderService} from '../../core/services/loader.service';
+
 
 @Injectable()
 export class MealsService {
@@ -19,7 +20,7 @@ export class MealsService {
   loadMeals() {
     this.loaderService.show();
     return this.getMeals().pipe(
-      tap(this.onMealsRecieve),
+      tap(this.onMealsReceive),
     );
   }
 
@@ -27,7 +28,7 @@ export class MealsService {
     this.loaderService.show();
     return this.deleteMeal(id).pipe(
       switchMap(() => this.getMeals()),
-      tap(this.onMealsRecieve)
+      tap(this.onMealsReceive)
     );
   }
 
@@ -39,7 +40,7 @@ export class MealsService {
     return this.mealsAPIService.deleteMeal(id);
   }
 
-  private onMealsRecieve = (meals: Meal[]) => {
+  private onMealsReceive = (meals: Meal[]) => {
     this.mealsSubject.next(meals);
     this.loaderService.hide();
   }

@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
+import {tap} from 'rxjs/operators';
+
 import {MealsService} from '../../services/meals.service';
-import {switchMap, tap} from 'rxjs/operators';
 import {Meal} from '../../../core/models/meal.model';
-import {JoinPipe} from '../../../shared/pipes/join.pipe';
 
 
 @Component({
@@ -15,7 +15,8 @@ export class MealsComponent implements OnInit {
 
   meals: Meal[];
 
-  constructor(private mealsService: MealsService) { }
+  constructor(private mealsService: MealsService) {
+  }
 
   ngOnInit(): void {
     this.mealsService.loadMeals().subscribe();

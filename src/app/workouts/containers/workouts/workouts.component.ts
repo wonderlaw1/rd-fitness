@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {switchMap, tap} from 'rxjs/operators';
+import {tap} from 'rxjs/operators';
 
 import {Workout} from '../../../core/models/workout.model';
 import {WorkoutsService} from '../../services/workouts.service';
@@ -19,16 +19,14 @@ export class WorkoutsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.workoutsService.getWorkouts().pipe(
-      tap(data => this.workouts = data)
+    this.workoutsService.loadWorkouts().subscribe();
+    this.workoutsService.workouts.pipe(
+      tap(meals => this.workouts = meals)
     ).subscribe();
   }
 
   handleDelete(id: number) {
-    this.workoutsService.deleteWorkout(id).pipe(
-      switchMap(() => this.workoutsService.getWorkouts()),
-      tap(data => this.workouts = data)
-    ).subscribe();
+    this.workoutsService.deleteWorkoutById(id).subscribe();
   }
 
 }
