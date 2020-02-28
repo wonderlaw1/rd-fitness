@@ -1,0 +1,21 @@
+<form #f="ngForm" (ngSubmit)="onSubmit()">
+  <div class="field">
+    <label><b>First Name:</b></label>
+    <input type="text" class="input" required #firstname="ngModel" [(ngModel)]="user.firstName" name="name">
+    <span class="error" [hidden]="firstname.valid || firstname.pristine">Firstname is required</span>
+  </div>
+
+  <div class="field">
+    <label><b>Password:</b></label>
+    <input type="password" class="input" [(ngModel)]="user.password" minlength="5" required #password="ngModel" name="password">
+    <span class="error" [hidden]="!password.errors?.minlength || password.pristine">Min length is 5</span>
+    <span class="error" [hidden]="!password.errors?.required || password.pristine">Password is required</span>
+  </div>
+
+  <div class="field">
+    <label><b>Save credentials?: </b></label>
+    <input type="checkbox" [(ngModel)]="user.saveCredentials" name="saveCredentials">
+  </div>
+
+  <button class="button is-primary" type="submit" [disabled]="!f.valid">Submit</button>
+</form>

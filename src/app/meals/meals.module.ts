@@ -6,15 +6,17 @@ import {MealsRoutingModule} from './meals.routing-module';
 import { MealComponent } from './containers/meal/meal.component';
 import { MealFormComponent } from './components/meal-form/meal-form.component';
 import {SharedModule} from '../shared/shared.module';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { LoginFormComponent } from './components/login-form/login-form.component';
 
 
 @NgModule({
-  declarations: [MealsComponent, MealComponent, MealFormComponent],
+  declarations: [MealsComponent, MealComponent, MealFormComponent, LoginFormComponent],
   imports: [
     CommonModule,
     MealsRoutingModule,
     ReactiveFormsModule,
+    FormsModule,
     SharedModule
   ]
 })

@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
-import {FormBuilder, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Workout} from '../../../core/models/workout.model';
+import {rangeValidator, rangeValidatorParams} from '../../../core/validators/range.validator';
 
 
 @Component({
@@ -30,8 +31,8 @@ export class WorkoutFormComponent implements OnInit {
     type: 'strength',
     strength: this.fb.group({
       reps: 0,
-      sets: 0,
-      weight: 0
+      sets: [0, rangeValidatorParams(1, 10)],
+      weight: [0, rangeValidator]
     }),
     endurance: this.fb.group({
       distance: 0,
@@ -51,6 +52,26 @@ export class WorkoutFormComponent implements OnInit {
 
   get placeholder() {
     return `e.g. ${this.form.get('type').value === 'strength' ? 'Benchpress' : 'Treadmill'}`;
+  }
+
+  get strength(): FormGroup {
+    return this.form.controls.strength as FormGroup;
+  }
+
+  get isSetsRangeInvalid(): boolean {
+    const sets = this.strength.get('sets');
+    return (
+      sets.hasError('range') &&
+      sets.touched
+    );
+  }
+
+  get isWeightRangeInvalid(): boolean {
+    const sets = this.strength.get('weight');
+    return (
+      sets.hasError('range') &&
+      sets.touched
+    );
   }
 
   ngOnInit() {

@@ -32,12 +32,18 @@
       <label>
         <b>Sets:</b>
         <input class="input" type="text" formControlName="sets">
+        <span class="error" *ngIf="isSetsRangeInvalid">
+          Value is out of range
+        </span>
       </label>
     </div>
     <div class="field">
       <label>
         <b>Weight:</b>
         <input class="input" type="text" formControlName="weight">
+        <span class="error" *ngIf="isWeightRangeInvalid">
+          Value is out of range
+        </span>
       </label>
     </div>
   </div>

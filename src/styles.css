@@ -53,3 +53,7 @@ i.fa {
 .ng-invalid.ng-touched {
   border-color: red;
 }
+
+span.error {
+  display: block;
+}
