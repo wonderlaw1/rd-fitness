@@ -3,6 +3,9 @@
     <span><i class="fa fa-dumbbell"></i> Add training:</span>
   </div>
   <div class="panel-block">
-    <app-workout-form></app-workout-form>
+    <app-workout-form
+      [workout]="workout"
+      (add)="onAdd($event)"
+      (edit)="onEdit($event)"></app-workout-form>
   </div>
 </div>

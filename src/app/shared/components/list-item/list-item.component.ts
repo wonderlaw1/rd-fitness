@@ -9,11 +9,16 @@ export class ListItemComponent {
 
   @Input() item: any;
   @Output() deleted: EventEmitter<number> = new EventEmitter();
+  @Output() edit: EventEmitter<number> = new EventEmitter();
 
   constructor() { }
 
-  handleDelete() {
+  handleDelete(): void {
     this.deleted.emit(this.item.id);
+  }
+
+  handleEdit(): void {
+    this.edit.emit(this.item.id);
   }
 
 }

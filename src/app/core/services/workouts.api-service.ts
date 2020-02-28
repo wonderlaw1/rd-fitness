@@ -21,4 +21,16 @@ export class WorkoutsApiService {
   deleteWorkout(id: number): Observable<{}> {
     return this.httpClient.delete<Workout[]>(`${BASE_URL}/workouts/${id}`);
   }
+
+  addWorkout(workout: Workout): Observable<Workout> {
+    return this.httpClient.post<Workout>(`${BASE_URL}/workouts/`, workout);
+  }
+
+  editWorkout(workout: Workout): Observable<Workout> {
+    return this.httpClient.put<Workout>(`${BASE_URL}/workouts/${workout.id}`, workout);
+  }
+
+  getWorkout(id: number): Observable<Workout> {
+    return this.httpClient.get<Workout>(`${BASE_URL}/workouts/${id}`);
+  }
 }

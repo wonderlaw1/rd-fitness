@@ -4,7 +4,7 @@
     {
       "id": 1,
       "type": "endurance",
-      "name": "Running",
+      "name": "running",
       "strength": {
         "reps": 0,
         "sets": 0,
@@ -18,7 +18,7 @@
     {
       "id": 2,
       "type": "strength",
-      "name": "Benchpress",
+      "name": "running",
       "strength": {
         "reps": 15,
         "sets": 2,
@@ -28,18 +28,40 @@
         "distance": 0,
         "duration": 0
       }
+    },
+    {
+      "name": "Pull-off2",
+      "type": "strength",
+      "strength": {
+        "reps": "11",
+        "sets": "5",
+        "weight": "40"
+      },
+      "endurance": {
+        "duration": "",
+        "distance": ""
+      },
+      "id": 3
     }
   ],
   "meals": [
     {
       "id": 1,
       "name": "Spaghetti",
-      "ingredients": ["Pasta", "Tomato", "Meat"]
+      "ingredients": [
+        "Pasta",
+        "Tomato",
+        "Meat"
+      ]
     },
     {
       "id": 2,
       "name": "English Breakfast",
-      "ingredients": ["Toast", "Egg", "Beans"]
+      "ingredients": [
+        "Toast",
+        "Egg",
+        "Beans"
+      ]
     }
   ]
 }

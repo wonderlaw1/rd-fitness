@@ -83,7 +83,10 @@
     "template-banana-in-box": true,
     "template-no-negated-async": true,
     "use-lifecycle-interface": true,
-    "use-pipe-transform-interface": true
+    "use-pipe-transform-interface": true,
+    "no-any": true,
+    "typedef": [true, "call-signature", "parameter"],
+    "no-null-keyword": true
   },
   "rulesDirectory": [
     "codelyzer"

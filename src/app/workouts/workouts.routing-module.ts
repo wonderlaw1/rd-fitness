@@ -13,6 +13,10 @@ const routes: Route[] = [
   {
     path: 'add',
     component: WorkoutComponent
+  },
+  {
+    path: ':id',
+    component: WorkoutComponent
   }
 ];
 

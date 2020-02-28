@@ -1,9 +1,9 @@
-<form>
+<form [formGroup]="form">
   <div class="field">
     <label>
       <b>Workout name:</b>
-      <input (keyup)="onKeyUp(card.value)" #card class="input" type="text" placeholder="e.g. Benchpress">
-      <img appCreditCardLogo [cardNumber]="cardNumber">
+      <input formControlName="name" class="input" type="text" placeholder="e.g. Benchpress">
+      <span class="error" *ngIf="form.get('name').errors?.required">requried</span>
     </label>
   </div>
 
@@ -11,52 +11,57 @@
     <b class="is-block">Type:</b>
     <label class="radio">
       Strength:
-      <input name="type" type="radio">
+      <input name="type" type="radio" value="strength" formControlName="type">
     </label>
     <label class="radio">
       Endurance:
-      <input name="type" type="radio">
+      <input name="type" type="radio" value="endurance" formControlName="type">
     </label>
   </div>
 
-  <div class="flex space-between">
+  <div class="flex space-between" formGroupName="strength"
+       *ngIf="isStrengthVisible">
     <div class="field">
       <label>
         <b>Reps:</b>
-        <input class="input" type="text">
+        <input class="input" type="text" formControlName="reps">
       </label>
     </div>
     <div class="field">
       <label>
         <b>Sets:</b>
-        <input class="input" type="text">
+        <input class="input" type="text" formControlName="sets">
+        <span class="error" *ngIf="isSetsRangeInvalid">Sets out of range</span>
       </label>
     </div>
     <div class="field">
       <label>
         <b>Weight:</b>
-        <input class="input" type="text">
+        <input class="input" type="text" formControlName="weight">
+        <span class="error" *ngIf="isWeightRangeInvalid">Weight out of range</span>
       </label>
     </div>
   </div>
 
-  <div class="flex space-between">
+  <div class="flex space-between" formGroupName="endurance"
+       *ngIf="isEnduranceVisible">
     <div class="field">
       <label>
         <b>Distance(km):</b>
-        <input class="input" type="text">
+        <input class="input" type="text" formControlName="distance">
       </label>
     </div>
     <div class="field">
       <label>
         <b>Duration(min):</b>
-        <input class="input" type="text">
+        <input class="input" type="text" formControlName="duration">
       </label>
     </div>
   </div>
 
   <div class="actions flex space-between">
     <button class="button" [routerLink]="['../']">Cancel</button>
-    <button class="button is-primary">Add</button>
+    <button class="button is-primary" *ngIf="!existed" (click)="onAdd()" [disabled]="form.invalid">Add</button>
+    <button class="button is-primary" *ngIf="existed" (click)="onEdit()" [disabled]="form.invalid">Edit</button>
   </div>
 </form>

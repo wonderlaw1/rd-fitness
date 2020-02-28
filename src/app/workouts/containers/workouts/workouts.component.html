@@ -3,8 +3,10 @@
     <span><i class="fa fa-dumbbell"></i> Your trainings:</span>
     <button class="button is-primary is-small" [routerLink]="['./add']">Add Training</button>
   </div>
+  <input type="text" placeholder="search" [formControl]="searchControl">
   <app-list-item
     *ngFor="let workout of workouts"
     [item]="workout"
+    (edit)="handleEdit($event)"
     (deleted)="handleDelete($event)"></app-list-item>
 </div>

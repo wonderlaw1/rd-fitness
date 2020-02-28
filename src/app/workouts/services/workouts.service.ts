@@ -5,6 +5,7 @@ import {switchMap, tap} from 'rxjs/operators';
 import {Workout} from '../../core/models/workout.model';
 import {WorkoutsApiService} from '../../core/services/workouts.api-service';
 import {LoaderService} from '../../core/services/loader.service';
+import {Router} from '@angular/router';
 
 
 @Injectable()
@@ -14,7 +15,8 @@ export class WorkoutsService {
   workouts: Observable<Workout[]> = this.workoutsSubject.asObservable();
 
   constructor(private workoutsAPIService: WorkoutsApiService,
-              private loaderService: LoaderService) {
+              private loaderService: LoaderService,
+              private router: Router) {
   }
 
   loadWorkouts() {
@@ -30,6 +32,33 @@ export class WorkoutsService {
       switchMap(() => this.getWorkouts()),
       tap(this.omWorkoutsReceive)
     );
+  }
+
+  addWorkout(workout: Workout): Observable<Workout> {
+    this.loaderService.show();
+    return this.workoutsAPIService.addWorkout(workout).pipe(
+      tap(() => this.loaderService.hide()),
+      tap(() => this.router.navigate(['/workouts']))
+    );
+  }
+
+  editWorkout(workout: Workout): Observable<Workout> {
+    this.loaderService.show();
+    return this.workoutsAPIService.editWorkout(workout).pipe(
+      tap(() => this.loaderService.hide()),
+      tap(() => this.router.navigate(['/workouts']))
+    );
+  }
+
+  getWorkout(id: number): Observable<Workout> {
+    this.loaderService.show();
+    return this.workoutsAPIService.getWorkout(id).pipe(
+      tap(() => this.loaderService.hide())
+    );
+  }
+
+  navigateById(id: number): void {
+    this.router.navigate([`/workouts/${id}`]);
   }
 
   private getWorkouts(): Observable<Workout[]> {
