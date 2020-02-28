@@ -1,4 +1,5 @@
 export interface Workout {
+  id: number;
   name: string;
   type: 'endurance' | 'strength';
   strength?: Strength;

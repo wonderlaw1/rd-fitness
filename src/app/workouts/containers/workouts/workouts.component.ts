@@ -3,6 +3,7 @@ import {tap} from 'rxjs/operators';
 
 import {Workout} from '../../../core/models/workout.model';
 import {WorkoutsService} from '../../services/workouts.service';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -15,7 +16,8 @@ export class WorkoutsComponent implements OnInit {
 
   workouts: Workout[];
 
-  constructor(private workoutsService: WorkoutsService) {
+  constructor(private workoutsService: WorkoutsService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -29,4 +31,7 @@ export class WorkoutsComponent implements OnInit {
     this.workoutsService.deleteWorkoutById(id).subscribe();
   }
 
+  handleEdit(id: number) {
+    this.router.navigate([`workouts/${id}`]);
+  }
 }

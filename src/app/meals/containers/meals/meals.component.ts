@@ -3,6 +3,7 @@ import {tap} from 'rxjs/operators';
 
 import {MealsService} from '../../services/meals.service';
 import {Meal} from '../../../core/models/meal.model';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -15,7 +16,8 @@ export class MealsComponent implements OnInit {
 
   meals: Meal[];
 
-  constructor(private mealsService: MealsService) {
+  constructor(private mealsService: MealsService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -29,4 +31,7 @@ export class MealsComponent implements OnInit {
     this.mealsService.deleteMealById(id).subscribe();
   }
 
+  handleEdit(id: number) {
+    this.router.navigate([`meals/${id}`]);
+  }
 }

@@ -6,5 +6,6 @@
   <app-list-item
     *ngFor="let workout of workouts"
     [item]="workout"
+    (edit)="handleEdit($event)"
     (deleted)="handleDelete($event)"></app-list-item>
 </div>

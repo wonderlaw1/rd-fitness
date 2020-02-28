@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 import {RouterModule, Route} from '@angular/router';
 
 import {WorkoutsComponent} from './containers/workouts/workouts.component';
@@ -13,6 +13,10 @@ const routes: Route[] = [
   {
     path: 'add',
     component: WorkoutComponent
+  },
+  {
+    path: ':id',
+    component: WorkoutComponent
   }
 ];
 
@@ -22,4 +26,5 @@ const routes: Route[] = [
   ],
   exports: [RouterModule]
 })
-export class WorkoutsRoutingModule { }
+export class WorkoutsRoutingModule {
+}

@@ -16,30 +16,75 @@
       }
     },
     {
-      "id": 2,
-      "type": "strength",
       "name": "Benchpress",
+      "type": "strength",
       "strength": {
         "reps": 15,
         "sets": 2,
-        "weight": 0
+        "weight": "35"
       },
       "endurance": {
         "distance": 0,
         "duration": 0
-      }
+      },
+      "id": 2
+    },
+    {
+      "name": "New",
+      "type": "strength",
+      "strength": {
+        "reps": "12",
+        "sets": "12",
+        "weight": "12"
+      },
+      "endurance": {
+        "distance": 0,
+        "duration": 0
+      },
+      "id": 3
+    },
+    {
+      "name": "New2",
+      "type": "endurance",
+      "strength": {
+        "reps": 0,
+        "sets": 0,
+        "weight": 0
+      },
+      "endurance": {
+        "distance": "12",
+        "duration": "45"
+      },
+      "id": 4
     }
   ],
   "meals": [
     {
-      "id": 1,
       "name": "Spaghetti",
-      "ingredients": ["Pasta", "Tomato", "Meat"]
+      "ingredients": [
+        "Pasta",
+        "Tomato",
+        "Meat",
+        ""
+      ],
+      "id": 1
     },
     {
       "id": 2,
       "name": "English Breakfast",
-      "ingredients": ["Toast", "Egg", "Beans"]
+      "ingredients": [
+        "Toast",
+        "Egg",
+        "Beans"
+      ]
+    },
+    {
+      "name": "123435",
+      "ingredients": [
+        "123",
+        "123"
+      ],
+      "id": 3
     }
   ]
 }

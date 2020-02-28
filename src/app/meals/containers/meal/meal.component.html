@@ -1,9 +1,9 @@
 <div class="panel">
   <div class="panel-heading space-between flex align-items-center">
-    <span><i class="fa fa-utensils"></i> Add Meal:</span>
+    <span><i class="fa fa-utensils"></i> {{ id ? 'Edit' : 'Add' }} Meal:</span>
   </div>
 
   <div class="panel-block">
-    <app-meal-form></app-meal-form>
+    <app-meal-form [meal]="meal" (create)="createMeal($event)" (update)="updateMeal($event)"></app-meal-form>
   </div>
 </div>

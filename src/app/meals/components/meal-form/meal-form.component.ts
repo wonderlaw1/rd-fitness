@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, Validators} from '@angular/forms';
 import {Meal} from '../../../core/models/meal.model';
 
@@ -8,9 +8,25 @@ import {Meal} from '../../../core/models/meal.model';
   templateUrl: './meal-form.component.html',
   styleUrls: ['./meal-form.component.css']
 })
-export class MealFormComponent implements OnInit, OnChanges {
+export class MealFormComponent implements OnInit {
 
-  @Input() meal: Meal;
+  private id: number;
+
+  @Input() set meal(meal: Meal) {
+    if (meal && meal.name) {
+      this.id = meal.id;
+      this.exists = true;
+      this.ingredients.clear();
+
+      this.form.patchValue(meal);
+
+      if (meal.ingredients) {
+        for (const item of meal.ingredients) {
+          this.ingredients.push(new FormControl(item, [Validators.required]));
+        }
+      }
+    }
+  }
   @Output() create = new EventEmitter<Meal>();
   @Output() update = new EventEmitter<Meal>();
 
@@ -18,7 +34,7 @@ export class MealFormComponent implements OnInit, OnChanges {
 
   form = this.fb.group({
     name: ['', Validators.required],
-    ingredients: this.fb.array([''])
+    ingredients: this.fb.array([new FormControl('', [Validators.required])])
   });
 
   constructor(private fb: FormBuilder) { }
@@ -37,22 +53,6 @@ export class MealFormComponent implements OnInit, OnChanges {
   ngOnInit() {
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (this.meal && this.meal.name) {
-      this.exists = true;
-      this.ingredients.clear();
-
-      const value = this.meal;
-      this.form.patchValue(value);
-
-      if (value.ingredients) {
-        for (const item of value.ingredients) {
-          this.ingredients.push(new FormControl(item));
-        }
-      }
-    }
-  }
-
   createMeal() {
     if (this.form.valid) {
       this.create.emit(this.form.value);
@@ -61,7 +61,7 @@ export class MealFormComponent implements OnInit, OnChanges {
 
   updateMeal() {
     if (this.form.valid) {
-      this.update.emit(this.form.value);
+      this.update.emit({...this.form.value, id: this.id});
     }
   }
 

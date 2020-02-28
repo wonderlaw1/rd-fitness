@@ -3,6 +3,7 @@ import {RouterModule, Route} from '@angular/router';
 import {MealsComponent} from './containers/meals/meals.component';
 import {MealComponent} from './containers/meal/meal.component';
 
+
 const routes: Route[] = [
   {
     path: '',
@@ -11,17 +12,17 @@ const routes: Route[] = [
   {
     path: 'add',
     component: MealComponent
+  },
+  {
+    path: ':id',
+    component: MealComponent
   }
 ];
 
 @NgModule({
-  declarations: [
-  ],
   imports: [
     RouterModule.forChild(routes)
   ],
-  providers: [],
-  bootstrap: [],
   exports: [RouterModule]
 })
 export class MealsRoutingModule { }

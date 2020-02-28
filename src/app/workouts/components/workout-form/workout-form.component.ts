@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
-import {Workout} from '../../../core/models/workout.model';
 import {FormBuilder, Validators} from '@angular/forms';
+import {Workout} from '../../../core/models/workout.model';
+
 
 @Component({
   selector: 'app-workout-form',
@@ -9,11 +10,13 @@ import {FormBuilder, Validators} from '@angular/forms';
 })
 export class WorkoutFormComponent implements OnInit {
 
+  private id: number;
+
   @Input() set workout(workout: Workout) {
     if (workout && workout.name) {
+      this.id = workout.id;
       this.exists = true;
-      const value = this.workout;
-      this.form.patchValue(value);
+      this.form.patchValue(workout);
     }
   }
 
@@ -55,14 +58,13 @@ export class WorkoutFormComponent implements OnInit {
 
   createWorkout() {
     if (this.form.valid) {
-      console.log(this.form.value);
       this.create.emit(this.form.value);
     }
   }
 
   updateWorkout() {
     if (this.form.valid) {
-      this.update.emit(this.form.value);
+      this.update.emit({...this.form.value, id: this.id});
     }
   }
 }
