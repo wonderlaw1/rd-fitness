@@ -1,30 +1,29 @@
-import {Component, OnInit} from '@angular/core';
-import {tap} from 'rxjs/operators';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {Observable} from 'rxjs';
 
 import {MealsService} from '../../services/meals.service';
 import {Meal} from '../../../core/models/meal.model';
-import {Router} from '@angular/router';
 
 
 @Component({
   selector: 'app-meals',
   templateUrl: './meals.component.html',
   styleUrls: ['./meals.component.css'],
-  providers: [MealsService]
+  providers: [MealsService],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MealsComponent implements OnInit {
 
-  meals: Meal[];
+  meals$: Observable<Meal[]>;
 
   constructor(private mealsService: MealsService,
               private router: Router) {
   }
 
   ngOnInit(): void {
+    this.meals$ = this.mealsService.meals;
     this.mealsService.loadMeals().subscribe();
-    this.mealsService.meals.pipe(
-      tap(meals => this.meals = meals)
-    ).subscribe();
   }
 
   handleDelete(id: number) {

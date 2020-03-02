@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Workout} from '../../../core/models/workout.model';
 import {rangeValidator, rangeValidatorParams} from '../../../core/validators/range.validator';
@@ -7,7 +7,8 @@ import {rangeValidator, rangeValidatorParams} from '../../../core/validators/ran
 @Component({
   selector: 'app-workout-form',
   templateUrl: './workout-form.component.html',
-  styleUrls: ['./workout-form.component.css']
+  styleUrls: ['./workout-form.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WorkoutFormComponent implements OnInit {
 

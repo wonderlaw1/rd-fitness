@@ -20,7 +20,6 @@ import { LoaderComponent } from './components/loader/loader.component';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

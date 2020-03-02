@@ -1,19 +1,21 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {MealsService} from '../../services/meals.service';
 import {Meal} from '../../../core/models/meal.model';
 import {tap} from 'rxjs/operators';
 import {ActivatedRoute} from '@angular/router';
+import {Observable} from 'rxjs';
 
 
 @Component({
   selector: 'app-meal',
   templateUrl: './meal.component.html',
   styleUrls: ['./meal.component.css'],
-  providers: [MealsService]
+  providers: [MealsService],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MealComponent implements OnInit {
 
-  meal: Meal;
+  meal$: Observable<Meal>;
   id: number;
 
   constructor(private mealsService: MealsService,
@@ -23,9 +25,7 @@ export class MealComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.activatedRoute.snapshot.params.id;
     if (this.id) {
-      this.mealsService.getMealById(this.id).pipe(
-        tap(meal => this.meal = meal)
-      ).subscribe();
+      this.meal$ = this.mealsService.getMealById(this.id);
     }
   }
 

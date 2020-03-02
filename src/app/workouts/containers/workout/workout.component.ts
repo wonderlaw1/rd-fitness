@@ -1,18 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {Workout} from '../../../core/models/workout.model';
 import {WorkoutsService} from '../../services/workouts.service';
 import {ActivatedRoute} from '@angular/router';
 import {tap} from 'rxjs/operators';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-workout',
   templateUrl: './workout.component.html',
   styleUrls: ['./workout.component.css'],
-  providers: [WorkoutsService]
+  providers: [WorkoutsService],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WorkoutComponent implements OnInit {
 
-  workout: Workout;
+  workout$: Observable<Workout>;
   id: number;
 
   constructor(private workoutsService: WorkoutsService,
@@ -21,9 +23,7 @@ export class WorkoutComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.activatedRoute.snapshot.params.id;
     if (this.id) {
-      this.workoutsService.getWorkoutById(this.id).pipe(
-        tap(workout => this.workout = workout)
-      ).subscribe();
+      this.workout$ = this.workoutsService.getWorkoutById(this.id);
     }
   }
 

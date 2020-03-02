@@ -1,30 +1,29 @@
-import {Component, OnInit} from '@angular/core';
-import {tap} from 'rxjs/operators';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {Observable} from 'rxjs';
 
 import {Workout} from '../../../core/models/workout.model';
 import {WorkoutsService} from '../../services/workouts.service';
-import {Router} from '@angular/router';
 
 
 @Component({
   selector: 'app-workouts',
   templateUrl: './workouts.component.html',
   styleUrls: ['./workouts.component.css'],
-  providers: [WorkoutsService]
+  providers: [WorkoutsService],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WorkoutsComponent implements OnInit {
 
-  workouts: Workout[];
+  workouts$: Observable<Workout[]>;
 
   constructor(private workoutsService: WorkoutsService,
               private router: Router) {
   }
 
   ngOnInit(): void {
+    this.workouts$ = this.workoutsService.workouts;
     this.workoutsService.loadWorkouts().subscribe();
-    this.workoutsService.workouts.pipe(
-      tap(meals => this.workouts = meals)
-    ).subscribe();
   }
 
   handleDelete(id: number) {

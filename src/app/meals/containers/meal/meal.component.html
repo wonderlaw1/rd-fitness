@@ -4,7 +4,7 @@
   </div>
 
   <div class="panel-block">
-    <app-meal-form [meal]="meal" (create)="createMeal($event)" (update)="updateMeal($event)"></app-meal-form>
+    <app-meal-form [meal]="meal$ | async" (create)="createMeal($event)" (update)="updateMeal($event)"></app-meal-form>
     <app-login-form></app-login-form>
   </div>
 </div>

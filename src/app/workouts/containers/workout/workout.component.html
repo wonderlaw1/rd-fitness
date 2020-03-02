@@ -3,6 +3,6 @@
     <span><i class="fa fa-dumbbell"></i> {{ id ? 'Edit' : 'Add' }} training:</span>
   </div>
   <div class="panel-block">
-    <app-workout-form [workout]="workout" (create)="createWorkout($event)" (update)="updateWorkout($event)"></app-workout-form>
+    <app-workout-form [workout]="workout$ | async" (create)="createWorkout($event)" (update)="updateWorkout($event)"></app-workout-form>
   </div>
 </div>

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, Validators} from '@angular/forms';
 import {Meal} from '../../../core/models/meal.model';
 
@@ -6,7 +6,8 @@ import {Meal} from '../../../core/models/meal.model';
 @Component({
   selector: 'app-meal-form',
   templateUrl: './meal-form.component.html',
-  styleUrls: ['./meal-form.component.css']
+  styleUrls: ['./meal-form.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MealFormComponent implements OnInit {
 
