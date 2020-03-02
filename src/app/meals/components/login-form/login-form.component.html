@@ -1,0 +1,17 @@
+<form>
+  <div class="field">
+    <label><b>Firstname:</b></label>
+    <input class="input" #firstname="ngModel" type="text" required name="firstname" [(ngModel)]="user.firstname">
+    <span class="error" [hidden]="!firstname.errors?.required || !firstname.touched">Firstname is required</span>
+  </div>
+  <div class="field">
+    <label><b>Password:</b></label>
+    <input class="input" #password="ngModel" type="password" name="password" minlength="5" [(ngModel)]="user.password">
+    <span class="error" [hidden]="!password.errors?.minlength || password.pristine">Minlength 5</span>
+  </div>
+  <div class="field">
+    <label><b>Save session: </b></label>
+    <input type="checkbox" name="saveCredentials" [(ngModel)]="user.saveCredentials">
+  </div>
+  {{ user | json }}
+</form>
