@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 
 import {LoaderService} from '../../../core/services/loader.service';
@@ -14,11 +14,10 @@ export class AppComponent implements OnInit {
 
   isLoading$: Observable<boolean>;
 
-  constructor(private loaderService: LoaderService,
-              private cdRef: ChangeDetectorRef) {
+  constructor(private loaderService: LoaderService) {
+    this.isLoading$ = this.loaderService.loading;
   }
 
   ngOnInit() {
-    this.isLoading$ = this.loaderService.loading;
   }
 }
