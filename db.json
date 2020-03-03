@@ -2,9 +2,8 @@
   "schedule": [],
   "workouts": [
     {
-      "id": 1,
-      "type": "endurance",
       "name": "Running",
+      "type": "endurance",
       "strength": {
         "reps": 0,
         "sets": 0,
@@ -12,8 +11,9 @@
       },
       "endurance": {
         "distance": 10,
-        "duration": 60
-      }
+        "duration": "55"
+      },
+      "id": 1
     },
     {
       "name": "Benchpress",
@@ -53,7 +53,7 @@
       },
       "endurance": {
         "distance": "12",
-        "duration": "45"
+        "duration": "55"
       },
       "id": 4
     }

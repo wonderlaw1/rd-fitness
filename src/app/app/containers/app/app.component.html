@@ -13,4 +13,4 @@
   </div>
 </div>
 
-<app-loader *ngIf="isLoading"></app-loader>
+<app-loader *ngIf="isLoading$ | async"></app-loader>

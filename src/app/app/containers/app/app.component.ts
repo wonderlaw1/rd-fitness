@@ -1,26 +1,22 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {LoaderService} from '../../../core/services/loader.service';
 import {tap} from 'rxjs/operators';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit {
 
-  isLoading: boolean;
+  isLoading$: Observable<boolean> = this.loaderService.loading;
 
   constructor(private loaderService: LoaderService,
               private cdRef: ChangeDetectorRef) {
   }
 
   ngOnInit() {
-    this.loaderService.loading.pipe(
-      tap(isLoading => {
-        this.isLoading = isLoading;
-        this.cdRef.detectChanges();
-      })
-    ).subscribe();
   }
 }

@@ -4,7 +4,7 @@
     <button class="button is-primary is-small" [routerLink]="['./add']">Add Training</button>
   </div>
   <app-list-item
-    *ngFor="let workout of workouts"
+    *ngFor="let workout of workouts$ | async"
     [item]="workout"
     (edit)="handleEdit($event)"
     (deleted)="handleDelete($event)"></app-list-item>
