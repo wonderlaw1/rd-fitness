@@ -28,6 +28,20 @@
         "duration": 0
       },
       "id": 2
+    },
+    {
+      "name": "123",
+      "type": "strength",
+      "strength": {
+        "reps": "1",
+        "sets": "1",
+        "weight": "1"
+      },
+      "endurance": {
+        "distance": 0,
+        "duration": 0
+      },
+      "id": 3
     }
   ],
   "meals": [
@@ -35,9 +49,7 @@
       "name": "Spaghetti",
       "ingredients": [
         "Pasta",
-        "Tomato",
-        "Meat",
-        ""
+        "Tomato"
       ],
       "id": 1
     },

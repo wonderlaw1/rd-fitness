@@ -1,9 +1,9 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import {MealsService} from '../../services/meals.service';
-import {Meal} from '../../../core/models/meal.model';
-import {tap} from 'rxjs/operators';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Observable} from 'rxjs';
+
+import {MealsService} from '../../services/meals.service';
+import {Meal} from '../../../core/models/meal.model';
 
 
 @Component({
@@ -13,16 +13,14 @@ import {Observable} from 'rxjs';
   providers: [MealsService],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MealComponent implements OnInit {
+export class MealComponent {
 
   meal$: Observable<Meal>;
   id: number;
 
   constructor(private mealsService: MealsService,
               private activatedRoute: ActivatedRoute) {
-  }
 
-  ngOnInit(): void {
     this.id = this.activatedRoute.snapshot.params.id;
     if (this.id) {
       this.meal$ = this.mealsService.getMealById(this.id);
@@ -30,10 +28,10 @@ export class MealComponent implements OnInit {
   }
 
   createMeal(meal: Meal) {
-    this.mealsService.createMealHandler(meal).subscribe();
+    this.mealsService.createMealHandler(meal);
   }
 
   updateMeal(meal: Meal) {
-    this.mealsService.updateMealById(meal).subscribe();
+    this.mealsService.updateMealById(meal);
   }
 }

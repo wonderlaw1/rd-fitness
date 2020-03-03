@@ -23,33 +23,33 @@ export class MealsService {
     this.loaderService.show();
     return this.getMeals().pipe(
       tap(this.onMealsReceive),
-    );
+    ).subscribe();
   }
 
-  deleteMealById(id: number): Observable<{}> {
+  deleteMealById(id: number) {
     this.loaderService.show();
-    return this.deleteMeal(id).pipe(
+    this.deleteMeal(id).pipe(
       switchMap(() => this.getMeals()),
       tap(this.onMealsReceive)
-    );
+    ).subscribe();
   }
 
-  createMealHandler(meal: Meal): Observable<Meal> {
+  createMealHandler(meal: Meal): void {
     this.loaderService.show();
 
-    return this.mealsAPIService.createMeal(meal).pipe(
+    this.mealsAPIService.createMeal(meal).pipe(
       tap(() => this.router.navigate(['/meals'])),
       tap(() => this.loaderService.hide()),
-    );
+    ).subscribe();
   }
 
-  updateMealById(meal: Meal): Observable<Meal> {
+  updateMealById(meal: Meal): void {
     this.loaderService.show();
 
-    return this.mealsAPIService.updateMeal(meal).pipe(
+    this.mealsAPIService.updateMeal(meal).pipe(
       tap(() => this.router.navigate(['/meals'])),
       tap(() => this.loaderService.hide()),
-    );
+    ).subscribe();
   }
 
   getMealById(id: number): Observable<Meal> {

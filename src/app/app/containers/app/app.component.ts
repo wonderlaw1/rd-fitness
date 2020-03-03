@@ -10,14 +10,11 @@ import {LoaderService} from '../../../core/services/loader.service';
   styleUrls: ['./app.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 
-  isLoading$: Observable<boolean>;
+  isLoading$: Observable<boolean> = this.loaderService.loading;
 
   constructor(private loaderService: LoaderService) {
-    this.isLoading$ = this.loaderService.loading;
   }
 
-  ngOnInit() {
-  }
 }

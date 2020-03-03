@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
 
@@ -13,21 +13,18 @@ import {WorkoutsService} from '../../services/workouts.service';
   providers: [WorkoutsService],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class WorkoutsComponent implements OnInit {
+export class WorkoutsComponent {
 
-  workouts$: Observable<Workout[]>;
+  workouts$: Observable<Workout[]> = this.workoutsService.workouts;
 
   constructor(private workoutsService: WorkoutsService,
               private router: Router) {
-  }
 
-  ngOnInit(): void {
-    this.workouts$ = this.workoutsService.workouts;
-    this.workoutsService.loadWorkouts().subscribe();
+    this.workoutsService.loadWorkouts();
   }
 
   handleDelete(id: number) {
-    this.workoutsService.deleteWorkoutById(id).subscribe();
+    this.workoutsService.deleteWorkoutById(id);
   }
 
   handleEdit(id: number) {

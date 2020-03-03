@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
 
@@ -13,21 +13,18 @@ import {Meal} from '../../../core/models/meal.model';
   providers: [MealsService],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MealsComponent implements OnInit {
+export class MealsComponent {
 
-  meals$: Observable<Meal[]>;
+  meals$: Observable<Meal[]> = this.mealsService.meals;
 
   constructor(private mealsService: MealsService,
               private router: Router) {
-  }
 
-  ngOnInit(): void {
-    this.meals$ = this.mealsService.meals;
-    this.mealsService.loadMeals().subscribe();
+    this.mealsService.loadMeals();
   }
 
   handleDelete(id: number) {
-    this.mealsService.deleteMealById(id).subscribe();
+    this.mealsService.deleteMealById(id);
   }
 
   handleEdit(id: number) {

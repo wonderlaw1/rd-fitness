@@ -19,39 +19,43 @@ export class WorkoutsService {
               private router: Router) {
   }
 
-  loadWorkouts() {
+  loadWorkouts(): void {
     this.loaderService.show();
-    return this.getWorkouts().pipe(
+
+    this.getWorkouts().pipe(
       tap(this.onWorkoutsReceive),
-    );
+    ).subscribe();
   }
 
-  deleteWorkoutById(id: number): Observable<{}> {
+  deleteWorkoutById(id: number): void {
     this.loaderService.show();
-    return this.workoutsAPIService.deleteWorkout(id).pipe(
+    this.workoutsAPIService.deleteWorkout(id).pipe(
       switchMap(() => this.getWorkouts()),
       tap(this.onWorkoutsReceive)
-    );
+    ).subscribe();
   }
 
-  createWorkoutHandler(workout: Workout): Observable<Workout> {
+  createWorkoutHandler(workout: Workout): void {
     this.loaderService.show();
-    return this.workoutsAPIService.createWorkout(workout).pipe(
+
+    this.workoutsAPIService.createWorkout(workout).pipe(
       tap(() => this.loaderService.show()),
       tap(() => this.router.navigate(['/workouts']))
-    );
+    ).subscribe();
   }
 
-  updateWorkoutById(workout: Workout): Observable<Workout> {
+  updateWorkoutById(workout: Workout): void {
     this.loaderService.show();
-    return this.workoutsAPIService.updateWorkout(workout).pipe(
-      tap(() => this.router.navigate(['/workouts'])),
+
+    this.workoutsAPIService.updateWorkout(workout).pipe(
       tap(() => this.loaderService.hide()),
-    );
+      tap(() => this.router.navigate(['/workouts'])),
+    ).subscribe();
   }
 
   getWorkoutById(id: number): Observable<Workout> {
     this.loaderService.show();
+
     return this.workoutsAPIService.getWorkout(id).pipe(
       tap(() => this.loaderService.hide())
     );
