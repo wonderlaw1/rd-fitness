@@ -18,8 +18,8 @@ export class ListItemComponent {
     this.deleted.emit(this.item.id);
   }
 
-  handleEdit(id: number) {
-    this.edit.emit(id);
+  handleEdit() {
+    this.edit.emit(this.item.id);
   }
 
 }

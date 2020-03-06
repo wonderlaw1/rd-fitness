@@ -19,11 +19,11 @@ export class WorkoutsComponent {
 
   constructor(private workoutsService: WorkoutsService,
               private router: Router) {
-    this.workoutsService.loadWorkouts().subscribe();
+    this.workoutsService.loadWorkouts();
   }
 
   handleDelete(id: number) {
-    this.workoutsService.deleteWorkoutById(id).subscribe();
+    this.workoutsService.deleteWorkoutById(id);
   }
 
   handleEdit(id: number) {

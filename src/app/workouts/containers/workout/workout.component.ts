@@ -30,12 +30,11 @@ export class WorkoutComponent implements OnInit {
   }
 
   createWorkout(workout: Workout) {
-    this.workoutsService.createWorkoutHandler(workout).subscribe();
+    this.workoutsService.createWorkoutHandler(workout);
   }
 
   updateWorkout(workout: Workout) {
-    debugger;
-    this.workoutsService.updateWorkoutById(workout).subscribe();
+    this.workoutsService.updateWorkoutById(workout);
   }
 
 }
