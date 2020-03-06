@@ -32,13 +32,13 @@ export class WorkoutFormComponent implements OnInit {
     name: ['', Validators.required],
     type: 'strength',
     strength: this.fb.group({
-      reps: 1,
-      sets: 2,
-      weight: 2
+      reps: ['', [Validators.required]],
+      sets: '',
+      weight: ''
     }),
     endurance: this.fb.group({
-      distance: 0,
-      duration: 0
+      distance: '',
+      duration: ''
     })
   });
 

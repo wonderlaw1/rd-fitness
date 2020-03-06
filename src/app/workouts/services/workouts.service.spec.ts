@@ -4,7 +4,6 @@ import { WorkoutsService } from './workouts.service';
 import {WorkoutsApiService} from '../../core/services/workouts.api-service';
 import {LoaderService} from '../../core/services/loader.service';
 import {RouterTestingModule} from '@angular/router/testing';
-import {Router, RouterModule} from '@angular/router';
 import {of} from 'rxjs';
 import {Workout} from '../../core/models/workout.model';
 import SpyObj = jasmine.SpyObj;
