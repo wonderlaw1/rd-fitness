@@ -26,12 +26,12 @@ export class WorkoutsService {
     );
   }
 
-  deleteWorkoutById(id: number): Observable<{}> {
+  deleteWorkoutById(id: number): void {
     this.loaderService.show();
-    return this.workoutsAPIService.deleteWorkout(id).pipe(
+    this.workoutsAPIService.deleteWorkout(id).pipe(
       switchMap(() => this.getWorkouts()),
       tap(this.onWorkoutsReceive)
-    );
+    ).subscribe();
   }
 
   createWorkoutHandler(workout: Workout): Observable<Workout> {

@@ -13,8 +13,7 @@ export class AppComponent implements OnInit {
 
   isLoading$: Observable<boolean> = this.loaderService.loading;
 
-  constructor(private loaderService: LoaderService,
-              private cdRef: ChangeDetectorRef) {
+  constructor(private loaderService: LoaderService) {
   }
 
   ngOnInit() {

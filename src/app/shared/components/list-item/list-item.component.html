@@ -1,13 +1,13 @@
 <div class="panel-block space-between item">
   <div>
-    <p>{{ item.name }}</p>
-    <p *ngIf="item.ingredients; else workout">{{ item.ingredients | appJoin }}</p>
+    <p class="item-name">{{ item.name }}</p>
+    <p class="item-desc" *ngIf="item.ingredients; else workout">{{ item.ingredients | appJoin }}</p>
     <ng-template #workout>
       <p>{{ item | appWorkouts }}</p>
     </ng-template>
   </div>
   <div>
-    <i (click)="handleEdit(item.id)" class="fa fa-edit"></i>
+    <i (click)="handleEdit()" class="fa fa-edit"></i>
     <i (click)="handleDelete()" class="fa fa-trash-alt"></i>
   </div>
 </div>

@@ -1,4 +1,5 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
+import {JoinPipe} from '../../pipes/join.pipe';
 
 @Component({
   selector: 'app-list-item',
@@ -12,14 +13,15 @@ export class ListItemComponent {
   @Output() deleted: EventEmitter<number> = new EventEmitter();
   @Output() edit: EventEmitter<number> = new EventEmitter();
 
-  constructor() { }
+  constructor() {
+  }
 
   handleDelete() {
     this.deleted.emit(this.item.id);
   }
 
-  handleEdit(id: number) {
-    this.edit.emit(id);
+  handleEdit() {
+    this.edit.emit(this.item.id);
   }
 
 }

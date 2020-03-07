@@ -14,10 +14,6 @@ export class CreditCardLogoDirective {
 
   @HostBinding('src') imageSrc: string;
 
-  @HostListener('click') handleClick() {
-    console.log('directive click');
-  }
-
   @Input() set cardNumber(cardNumber: string) {
     this.imageSrc = `assets/card-types/${this.getCardType(cardNumber)}.png`;
   }

@@ -65,7 +65,7 @@
 
   <div class="actions flex space-between">
     <button class="button" [routerLink]="['../']">Cancel</button>
-    <button class="button is-primary" *ngIf="exists" (click)="updateWorkout()">Edit</button>
-    <button class="button is-primary" *ngIf="!exists" (click)="createWorkout()">Add</button>
+    <button class="button is-primary" [disabled]="form.invalid" *ngIf="exists" (click)="updateWorkout()">Edit</button>
+    <button class="button is-primary" [disabled]="form.invalid" *ngIf="!exists" (click)="createWorkout()">Add</button>
   </div>
 </form>
